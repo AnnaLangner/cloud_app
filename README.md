@@ -15,11 +15,17 @@ This project presents a simple PHP application designed for use in a containeriz
 ```
 ## Running project
 
+### In this project there are two ways to run the application:
+### First one
+
 1. Build the image
    - docker build -t php-app
 
 2. Run the container 
     - docker run -p 80:80 php-app
+   
+### Second one
+- docker compose up --build
 
 The application will be available at:
 - http://localhost
