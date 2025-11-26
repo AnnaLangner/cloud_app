@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  php-app:
+    build: .
+    container_name: php-router-app
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    restart: unless-stopped
