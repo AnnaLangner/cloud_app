@@ -8,4 +8,33 @@ services:
       - "80:80"
     volumes:
       - .:/var/www/html
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - app-network
     restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: php-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
